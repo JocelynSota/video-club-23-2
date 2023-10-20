@@ -6,8 +6,10 @@ var logger = require('morgan');
 var mongoose= require('mongoose');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var actorsRouter = require('./routes/actors');
+const directorsRouter = require('./routes/directors');
+const genresRouter = require('./routes/genres');
 
-const directorsRouter = require('./routes/directors')
 
 var app = express();
 //mongodb://<dbUser>?:<dbPass>?@<url>:<port>/<dbName>
@@ -36,6 +38,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/directors', directorsRouter);
+app.use('/actors', actorsRouter);
+app.use('./genres', genresRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
